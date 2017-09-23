@@ -12,6 +12,9 @@ export class NewAccountComponent {
 
   // Get access to the logging service using Angular's dependency injection
   constructor(private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe((status: string) => {
+      alert(`New status: ${status}`);
+    })
   }
 
   onCreateAccount(accountName: string, accountStatus: string) {
