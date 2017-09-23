@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input } from '@angular/core';
 
-import { LoggingService } from '../logging.service';
 import { AccountsService } from '../accounts.service';
 
 /* NB: AccountsService is provided heirarchically because it's provided in the
@@ -13,18 +12,16 @@ import { AccountsService } from '../accounts.service';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService]
+  providers: []
 })
 export class AccountComponent {
   @Input() account: {name: string, status: string};
   @Input() id: number;
 
-  constructor(private loggingService: LoggingService,
-    private accountsService: AccountsService) {
+  constructor(private accountsService: AccountsService) {
   }
 
   onSetTo(status: string) {
-    this.loggingService.logStatusChange(status);
     this.accountsService.updateStatus(this.id, status);
   }
 }
